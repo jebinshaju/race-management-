@@ -71,10 +71,13 @@ def addevent():
         eventdate=obtaindate()
         eventdist=int(input("Enter the total distance           :  "))
         eventtype=input("Enter the event type                  :  ")
-        
-        cur.execute("insert into events (Event_name,Event_stage,Event_date,Total_distance,Event_type)\
-            values('{}','{}',{},{},'{}')".format(eventname,eventstage,eventdate,eventdist,eventtype))
-        conn.commit()
+        try:
+            
+            cur.execute("insert into events (Event_name,Event_stage,Event_date,Total_distance,Event_type)\
+                values('{}','{}',{},{},'{}')".format(eventname,eventstage,eventdate,eventdist,eventtype))
+            conn.commit()
+        except:
+            print("Error entering data....")
         print("Enter '1' to add more events.")
         print("Enter '2' to return to main menu.")
         op=int(input("Enter your option:  "))
@@ -283,4 +286,4 @@ def auto():
     print(tabulate(r,headers=h,tablefmt="grid"))
 
 
-conn.close()
+
